@@ -1,0 +1,13 @@
+libs/
+node_modules/
+.DS_Store
+.idea
+.project
+
+# bem
+.bem/cache/
+*bundles*/*/*.*
+!*bundles*/*/*.bemdecl.js
+!*bundles*/*/*.min.js
+!*bundles*/*/*.yml
+!*bundles*/.bem/*

@@ -1,0 +1,16 @@
+{
+  "name": "bnsf-project-stub",
+  "version": "0.0.1",
+  "description": "bnsf project stub",
+  "bugs": "https://github.com/apsavin/bnsf-project-stub/issues",
+  "ignore": [
+    ".bem/cache",
+    "node_modules",
+    "libs"
+  ],
+  "dependencies": {
+    "bem-core": "v2.2.2",
+    "bnsf": "v0.0.1",
+    "bem-components": "git://github.com/bem/bem-components.git#62242d38e6cb5123054399c5b60a001941f98b65"
+  }
+}

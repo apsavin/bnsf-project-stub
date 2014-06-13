@@ -1,0 +1,18 @@
+block('page-3').content()(function () {
+    return this.doAsync(function () {
+        return get('some_api_route');
+    }).then(function (output) {
+        return [
+            {
+                block: 'link',
+                url: path('page-1'),
+                content: 'main page'
+            },
+            {
+                block: 'code-presenter',
+                tag: 'pre',
+                content: output.body
+            }
+        ]
+    });
+})
