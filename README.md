@@ -14,19 +14,19 @@ There are some examples of blocks in desktop.blocks directory. Feel free to dele
 ## Fast start:
 
     ```bash
-    git clone https://github.com/apsavin/bnsf-project-stub.git your-project-name
-    cd your-project-name
-    npm i
-    bem make
+    $ git clone https://github.com/apsavin/bnsf-project-stub.git your-project-name
+    $ cd your-project-name
+    $ npm i
+    $ bem make
     ```
 
 Then, you need to start two daemons.
 
 1. bem server for static resources:
     ```bash
-    bem server
+    $ bem server
     ```
 2. node server for application itself:
    ```bash
-   npm start
+   $ npm start
    ```
