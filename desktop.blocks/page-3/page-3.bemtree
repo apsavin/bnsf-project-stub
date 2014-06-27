@@ -1,7 +1,5 @@
 block('page-3').content()(function () {
-    return this.doAsync(function () {
-        return get('some_api_route');
-    }).then(function (output) {
+    return get(this, 'some_api_route').then(function (output) {
         return [
             {
                 block: 'link',

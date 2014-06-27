@@ -27,7 +27,7 @@ Then, you need to start two daemons.
   ```bash
   $ bem server
   ```
-  
+
 1.
   node server for application itself:
   ```bash

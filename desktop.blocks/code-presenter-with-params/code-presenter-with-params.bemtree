@@ -1,7 +1,5 @@
 block('code-presenter-with-params').content()(function () {
-    return this.doAsync(function () {
-            return get('some_api_route_with_params', {tech: this.ctx.tech || 'js'});
-        }.bind(this))
+    return get(this, 'some_api_route_with_params', {tech: this.ctx.tech || 'js'})
         .then(function (output) {
             return output.body;
         });
