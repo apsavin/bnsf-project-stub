@@ -35,7 +35,7 @@ Then, you need to start two daemons.
   $ npm start
   ```
 
-#Pro tips:
+##Pro tips:
 
 1. If you want to clean the cache of bem-tools, do `bem make -m clean`
 
