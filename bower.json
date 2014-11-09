@@ -9,7 +9,7 @@
     "libs"
   ],
   "dependencies": {
-    "bnsf": "3b3d300f86d656e8353114eaa8cc87642ef23e3c",
+    "bnsf": "c7ea5cd1f81c9f75849691bd30884de22a01496c",
     "bem-components": "84269fed566ba22a0a144a67ff9b9e2cb4f1c154"
   },
   "resolutions": {
