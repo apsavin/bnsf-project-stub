@@ -14,4 +14,4 @@ block('page-1').content()([
         url: path('page-4'),
         content: 'dynamic page with get params'
     }
-])
+]);

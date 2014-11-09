@@ -5,8 +5,6 @@ modules.define('page-1', ['i-page'], function (provide, Page) {
 
     }, {
 
-        _route: this.name,
-
         _title: 'main page'
 
     }));

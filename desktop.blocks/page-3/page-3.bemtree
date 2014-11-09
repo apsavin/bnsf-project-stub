@@ -1,5 +1,5 @@
 block('page-3').content()(function () {
-    return get(this, 'some_api_route').then(function (output) {
+    return this.get('some_api_route', function (output) {
         return [
             {
                 block: 'link',
@@ -13,4 +13,4 @@ block('page-3').content()(function () {
             }
         ]
     });
-})
+});

@@ -4,4 +4,4 @@ block('page-2').content()([
         url: path('page-1'),
         content: 'main page'
     }
-])
+]);

@@ -25,19 +25,20 @@ MAKE.decl('BundleNode', {
             'bemtree',
             'browser.js',
             'node.js',
-            'roole',
+            'stylus',
             'css'
         ];
 
     },
 
     getForkedTechs : function() {
-        return this.__base().concat(['roole']);
+        return this.__base().concat(['stylus']);
     },
 
     getLevelsMap : function() {
         return {
             desktop : [
+                'libs/bnsf/pre-bem-core.blocks',
                 'libs/bem-core/common.blocks',
                 'libs/bem-core/desktop.blocks',
                 'libs/bem-components/common.blocks',
@@ -45,6 +46,7 @@ MAKE.decl('BundleNode', {
                 'libs/bem-components/design/common.blocks',
                 'libs/bem-components/design/desktop.blocks',
                 'libs/bnsf/blocks',
+                'libs/bnsf/dev.blocks',
                 'desktop.blocks'
             ]
         };
@@ -61,7 +63,7 @@ MAKE.decl('BundleNode', {
     },
 
     'create-css-node' : function(tech, bundleNode, magicNode) {
-        var source = this.getBundlePath('roole');
+        var source = this.getBundlePath('stylus');
         if(this.ctx.arch.hasNode(source)) {
             return this.createAutoprefixerNode(tech, this.ctx.arch.getNode(source), bundleNode, magicNode);
         }

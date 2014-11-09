@@ -5,8 +5,6 @@ modules.define('page-3', ['i-page'], function (provide, Page) {
 
     }, {
 
-        _route: this.name,
-
         _title: 'dynamic page'
 
     }));

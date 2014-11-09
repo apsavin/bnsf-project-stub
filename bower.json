@@ -9,8 +9,10 @@
     "libs"
   ],
   "dependencies": {
-    "bem-core": "v2.2.2",
-    "bnsf": "v0.0.3",
-    "bem-components": "git://github.com/bem/bem-components.git#62242d38e6cb5123054399c5b60a001941f98b65"
+    "bnsf": "3b3d300f86d656e8353114eaa8cc87642ef23e3c",
+    "bem-components": "84269fed566ba22a0a144a67ff9b9e2cb4f1c154"
+  },
+  "resolutions": {
+    "bem-core": "ff5efbef8adc1f38b730c2d0e5f405e0b0d3e3d9"
   }
 }

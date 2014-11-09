@@ -17,7 +17,7 @@ block('page-4').content()(function () {
         },
         {
             block: 'code-presenter-with-params',
-            tech: this.ctx.data.route.parameters.tech
+            tech: this.ctx.route.parameters.tech
         }
     ];
-})
+});
