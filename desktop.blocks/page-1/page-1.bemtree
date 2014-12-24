@@ -13,5 +13,10 @@ block('page-1').content()([
         block: 'link',
         url: path('page-4'),
         content: 'dynamic page with get params'
+    },
+    {
+        block: 'link',
+        url: path('page-5'),
+        content: 'page with redirect'
     }
 ]);

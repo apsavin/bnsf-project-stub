@@ -15,3 +15,6 @@
 
 - id: page-4
   path: /dynamic-page-with-params
+
+- id: page-5
+  path: /page-with-redirect
