@@ -26,7 +26,7 @@ Then, you need to start two daemons.
 1.
   bem server for static resources:
   ```bash
-  $ bem server --force
+  $ bem server
   ```
 
 2.

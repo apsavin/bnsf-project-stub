@@ -1,6 +1,6 @@
 {
   "name": "bnsf-project-stub",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "bnsf project stub",
   "bugs": "https://github.com/apsavin/bnsf-project-stub/issues",
   "ignore": [
@@ -9,10 +9,7 @@
     "libs"
   ],
   "dependencies": {
-    "bnsf": "c7ea5cd1f81c9f75849691bd30884de22a01496c",
-    "bem-components": "84269fed566ba22a0a144a67ff9b9e2cb4f1c154"
-  },
-  "resolutions": {
-    "bem-core": "ff5efbef8adc1f38b730c2d0e5f405e0b0d3e3d9"
+    "bnsf": "v0.0.5",
+    "bem-components": "7329bcb78aaee74ab3372d93a026205d7c0ae77e"
   }
 }
