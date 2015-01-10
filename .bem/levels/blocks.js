@@ -1,5 +1,4 @@
-var PATH = require('path'),
-    environ = require('bem-environ'),
+var environ = require('bem-environ'),
     getTechResolver = environ.getTechResolver,
 
     BNSF_TECHS = environ.getLibPath('bnsf', '.bem/techs'),
