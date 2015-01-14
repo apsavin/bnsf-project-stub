@@ -20,3 +20,5 @@ block('page-1').content()([
         content: 'page with redirect'
     }
 ]);
+
+block('page-1').elem('title').content()('main page');

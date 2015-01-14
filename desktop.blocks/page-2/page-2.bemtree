@@ -5,3 +5,5 @@ block('page-2').content()([
         content: 'main page'
     }
 ]);
+
+block('page-2').elem('title').content()('another page');

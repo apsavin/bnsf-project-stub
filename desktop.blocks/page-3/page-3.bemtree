@@ -14,3 +14,5 @@ block('page-3').content()(function () {
         ]
     });
 });
+
+block('page-3').elem('title').content()('dynamic page');

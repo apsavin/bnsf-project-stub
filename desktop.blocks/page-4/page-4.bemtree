@@ -21,3 +21,5 @@ block('page-4').content()(function () {
         }
     ];
 });
+
+block('page-4').elem('title').content()('dynamic page with get params');

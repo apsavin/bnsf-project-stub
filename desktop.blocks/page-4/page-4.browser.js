@@ -1,7 +1,7 @@
-modules.define('page-4', ['BEMHTML', 'BEMTREE'], function (provide, BEMHTML, BEMTREE, Page4) {
+modules.define('page-4', ['i-page'], function (provide, Page) {
     "use strict";
 
-    provide(Page4.decl({
+    provide(Page.decl(this.name, {
 
         update: function (data) {
             return this._replace('code-presenter-with-params', {
