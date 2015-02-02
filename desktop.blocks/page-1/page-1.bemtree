@@ -1,24 +1,25 @@
-block('page-1').content()([
-    {
-        block: 'link',
-        url: path('page-2'),
-        content: 'another page'
-    },
-    {
-        block: 'link',
-        url: path('page-3'),
-        content: 'dynamic page'
-    },
-    {
-        block: 'link',
-        url: path('page-4'),
-        content: 'dynamic page with get params'
-    },
-    {
-        block: 'link',
-        url: path('page-5'),
-        content: 'page with redirect'
-    }
-]);
-
-block('page-1').elem('title').content()('main page');
+block('page-1')(
+    elem('title').content()('main page'),
+    content()([
+        {
+            block: 'link',
+            url: path('page-2'),
+            content: 'another page'
+        },
+        {
+            block: 'link',
+            url: path('page-3'),
+            content: 'dynamic page'
+        },
+        {
+            block: 'link',
+            url: path('page-4'),
+            content: 'dynamic page with get params'
+        },
+        {
+            block: 'link',
+            url: path('page-5'),
+            content: 'page with redirect'
+        }
+    ])
+);

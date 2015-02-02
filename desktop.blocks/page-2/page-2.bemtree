@@ -1,9 +1,10 @@
-block('page-2').content()([
-    {
-        block: 'link',
-        url: path('page-1'),
-        content: 'main page'
-    }
-]);
-
-block('page-2').elem('title').content()('another page');
+block('page-2')(
+    elem('title').content()('another page'),
+    content()([
+        {
+            block: 'link',
+            url: path('page-1'),
+            content: 'main page'
+        }
+    ])
+);

@@ -1,5 +1,6 @@
-block('page-5').content()(function () {
-    redirect(path('page-1'));
-});
-
-block('page-5').elem('title').content()('page with redirect');
+block('page-5')(
+    elem('title').content()('page with redirect'),
+    content()(function () {
+        redirect(path('page-1'));
+    })
+);

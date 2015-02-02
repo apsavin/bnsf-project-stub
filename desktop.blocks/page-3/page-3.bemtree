@@ -1,18 +1,19 @@
-block('page-3').content()(function () {
-    return this.get('some_api_route', function (output) {
-        return [
-            {
-                block: 'link',
-                url: path('page-1'),
-                content: 'main page'
-            },
-            {
-                block: 'code-presenter',
-                tag: 'pre',
-                content: output.body
-            }
-        ]
-    });
-});
-
-block('page-3').elem('title').content()('dynamic page');
+block('page-3')(
+    elem('title').content()('dynamic page'),
+    content()(function () {
+        return this.get('some_api_route', function (output) {
+            return [
+                {
+                    block: 'link',
+                    url: path('page-1'),
+                    content: 'main page'
+                },
+                {
+                    block: 'code-presenter',
+                    tag: 'pre',
+                    content: output.body
+                }
+            ]
+        });
+    })
+);
