@@ -9,7 +9,7 @@
     "libs"
   ],
   "dependencies": {
-    "bnsf": "0.1.0",
+    "bnsf": "~0.1.1",
     "bem-components": "^2.0.0"
   }
 }

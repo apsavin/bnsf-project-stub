@@ -44,6 +44,10 @@ bemServerProcess.stderr.on('data', function (data) {
     process.exit();
 });
 
+process.on('exit', function () {
+    bemServerProcess.kill();
+});
+
 var nodemonInstance;
 gulp.task('run', ['build'], function () {
     if (!isBuildFailed) {
