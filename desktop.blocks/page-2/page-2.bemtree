@@ -1,10 +1,12 @@
 block('page-2')(
     elem('title').content()('another page'),
-    content()([
-        {
-            block: 'link',
-            url: path('page-1'),
-            content: 'main page'
-        }
-    ])
+    content()(function () {
+        return [
+            {
+                block: 'link',
+                url: path('page-1'),
+                content: 'main page'
+            }
+        ];
+    })
 );
