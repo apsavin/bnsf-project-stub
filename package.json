@@ -12,6 +12,7 @@
   "dependencies": {
     "bem-environ": "~1.4.0",
     "bem-xjst": "0.9.0",
+    "sibling": "^0.1.3",
     "stylus": "~0.50.0",
     "vow": "~0.4.3"
   },
