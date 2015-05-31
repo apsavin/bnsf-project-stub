@@ -16,7 +16,7 @@ var techs = {
         prependYm: require('enb-modules/techs/prepend-modules'),
 
         // bemtree
-        bemtree: require('enb-bemxjst/techs/bemtree'),
+        bemtree: require('./techs/bemtree'),
 
         // bemhtml
         bemhtml: require('enb-bemxjst/techs/bemhtml'),
@@ -61,7 +61,14 @@ module.exports = function(config) {
             }],
 
             // bemtree
-            [techs.bemtree, { devMode: process.env.BEMTREE_ENV === 'development' }],
+            [techs.bemtree, {
+                devMode: process.env.BEMTREE_ENV === 'development',
+                modulesDeps: {
+                    'vow': 'Vow',
+                    'bemtree-extensions__path': 'path',
+                    'bemtree-extensions__redirect': 'redirect'
+                }
+            }],
 
             // bemhtml
             [techs.bemhtml, { devMode: process.env.BEMHTML_ENV === 'development' }],
