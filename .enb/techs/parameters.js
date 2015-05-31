@@ -61,6 +61,9 @@ module.exports = inherit(require('enb/lib/tech/base-tech'), {
             }, this)
             .then(function (content) {
                 return VowFs.write(targetPath, content);
-            });
+            })
+            .then(function () {
+                this.node.resolveTarget(target);
+            }, this);
     }
 });

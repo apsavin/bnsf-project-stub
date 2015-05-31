@@ -25,7 +25,8 @@ var techs = {
         pages: require('./techs/pages'),
         pagesBrowser: require('./techs/pages-browser'),
         controllers: require('./techs/controllers'),
-        parameters: require('./techs/parameters')
+        parameters: require('./techs/parameters'),
+        routes: require('./techs/routes')
     },
     enbBemTechs = require('enb-bem-techs'),
     levels = [
@@ -71,18 +72,28 @@ module.exports = function(config) {
             [techs.pagesBrowser],
             [techs.controllers],
             [techs.parameters],
+            [techs.fileProvider, { target: '?.routing.yml' }],
+            [techs.routes, {source: '?.routing.yml'}],
+            [techs.fileProvider, { target: '?.api.routing.yml' }],
+            [techs.routes, {source: '?.api.routing.yml', target: '?.routes-private.js', moduleName: 'routes-private'}],
 
             // browser js
             [techs.jsBorschikInclude, {target: '?.browser.js', sourceSuffixes: ['vanilla.js', 'js', 'browser.js']}],
             [techs.fileMerge, {
                 target: '?.pre.js',
-                sources: ['?.bemhtml.js', '?.bemtree.js', '?.browser.js', '?.pages.js']
+                sources: ['?.bemhtml.js', '?.bemtree.js', '?.browser.js', '?.pages.js',
+                    '?.routes.js'
+                ]
             }],
             [techs.prependYm, { source: '?.pre.js' }],
 
             // node js
             [techs.nodeJsWithSources, {
-                sources: ['?.bemhtml.js', '?.bemtree.js', '?.pages.node.js', '?.controllers.node.js', '?.parameters.js']
+                sources: [
+                    '?.bemhtml.js', '?.bemtree.js',
+                    '?.pages.node.js', '?.controllers.node.js',
+                    //'?.routes.js', '?.routes-private.js'
+                ]
             }],
             [techs.prependYm, { source: '?.node.js', target: '_?.node.js' }],
 

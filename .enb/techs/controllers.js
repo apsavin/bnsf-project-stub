@@ -34,16 +34,6 @@ module.exports = require('./bemdecl-reader')
          */
         _getResultString: function (controllers) {
             return this._getJSONModuleDefinition('controllers', controllers);
-        },
-
-        /**
-         * @param {String} name
-         * @param {Object} data
-         * @returns {string}
-         * @protected
-         */
-        _getJSONModuleDefinition: function (name, data) {
-            return this._getModuleDefinition(name, JSON.stringify(data));
         }
     })
     .createTech();

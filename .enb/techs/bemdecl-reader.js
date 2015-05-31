@@ -9,7 +9,7 @@
  * * *String* **bemDecl** - `?.bemdecl.js` by default.
  *
  */
-module.exports = require('enb/lib/build-flow').create()
+module.exports = require('./base-for-techs-with-modules')
     .useSourceFilename('bemDecl', '?.bemdecl.js')
     .builder(function (pathToDecl) {
         return this._processBlocksFromDecl(this._getBlocksFromDecl(pathToDecl));
@@ -44,15 +44,5 @@ module.exports = require('enb/lib/build-flow').create()
          */
         _checkBlockName: function (blockName) {
             return true;
-        },
-
-        /**
-         * @param {string} name
-         * @param {string} data
-         * @returns {string}
-         * @protected
-         */
-        _getModuleDefinition: function (name, data) {
-            return "modules.define('" + name + "', function(provide){provide(" + data + ");});\n";
         }
     });
