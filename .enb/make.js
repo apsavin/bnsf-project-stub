@@ -99,7 +99,7 @@ module.exports = function(config) {
                 sources: [
                     '?.bemhtml.js', '?.bemtree.js',
                     '?.pages.node.js', '?.controllers.node.js',
-                    //'?.routes.js', '?.routes-private.js'
+                    '?.routes.js', '?.routes-private.js'
                 ]
             }],
             [techs.prependYm, { source: '?.node.js', target: '_?.node.js' }],
