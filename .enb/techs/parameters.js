@@ -64,6 +64,9 @@ module.exports = inherit(require('enb/lib/tech/base-tech'), {
             })
             .then(function () {
                 this.node.resolveTarget(target);
+            }, this)
+            .fail(function (err) {
+                this.node.rejectTarget(target, err);
             }, this);
     }
 });
