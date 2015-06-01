@@ -10,7 +10,8 @@
  */
 
 var yml = require('../../libs/bnsf/node_modules/js-yaml'),
-    VowFs = require('enb/node_modules/vow-fs');
+    VowFs = require('enb/node_modules/vow-fs'),
+    PATH = require('path');
 
 module.exports = require('./base-for-techs-with-modules')
     .useSourceFilename('parameters', '?.parameters.js')
@@ -28,13 +29,22 @@ module.exports = require('./base-for-techs-with-modules')
          * @protected
          */
         _readYmlFileAndReplacePlaceholders: function (path, parameters) {
-            return VowFs.read(path).then(function (content) {
+            return VowFs.read(path, 'utf8').then(function (content) {
                 for (var key in parameters) {
                     if (parameters.hasOwnProperty(key)) {
                         content = content.replace(new RegExp('%' + key + '%', 'g'), parameters[key]);
                     }
                 }
-                return yml.safeLoad(content);
+
+                var res,
+                    logger = this.node.getLogger();
+                try {
+                    res = yml.safeLoad(content);
+                } catch (e) {
+                    logger.logErrorAction('parsing yml failed', PATH.basename(path), '\n' + e.toString());
+                    throw e;
+                }
+                return res;
             }, this);
         },
 
