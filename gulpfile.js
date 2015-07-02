@@ -11,7 +11,7 @@ var gulp = require('gulp'),
         gulp.start('run');
     },
     createBuildStream = shell.task([
-        'node ./node_modules/.bin/bem make -v error'
+        'node ./node_modules/.bin/enb make'
     ]),
     isBuildFailed = false,
     onBuildError = function () {
@@ -20,7 +20,7 @@ var gulp = require('gulp'),
     };
 
 gulp.task('clean', shell.task([
-    'node ./node_modules/.bin/bem make -m clean -v error'
+    'node ./node_modules/.bin/enb clean'
 ]));
 
 gulp.task('build', function () {
@@ -32,20 +32,18 @@ gulp.task('build', function () {
     return plumber().pipe(stream).pipe(plumber());
 });
 
-var bemServerProcess = spawn('node', [
-    './node_modules/.bin/bem',
-    'server',
-    '-v',
-    'error'
+var enbServerProcess = spawn('node', [
+    './node_modules/.bin/enb',
+    'server'
 ]);
 
-bemServerProcess.stderr.on('data', function (data) {
+enbServerProcess.stderr.on('data', function (data) {
     console.log('' + data);
     process.exit();
 });
 
 process.on('exit', function () {
-    bemServerProcess.kill();
+    enbServerProcess.kill();
 });
 
 var nodemonInstance;
@@ -53,7 +51,7 @@ gulp.task('run', ['build'], function () {
     if (!isBuildFailed) {
         if (!nodemonInstance) {
             nodemonInstance = nodemon({
-                script: 'desktop.bundles/index/index.node.js',
+                script: 'bundles/index/_index.node.js',
                 watch: '__manual__',
                 ext: '__manual__'
             }).on('restart', function () {
@@ -63,7 +61,7 @@ gulp.task('run', ['build'], function () {
             nodemonInstance.emit('restart');
         }
     }
-    if (needReRun) { // it seems that some something changed during build process
+    if (needReRun) { // it seems that something changed during the build process
         setTimeout(reRun, 0); // lets run it again
     } else {
         isInBuildProcess = false; // end of build process
@@ -72,12 +70,12 @@ gulp.task('run', ['build'], function () {
 
 gulp.task('watch', function () {
     watch([
-        'desktop.blocks/**/*',
-        'desktop.bundles/index/*.{yml,bemdecl.js}'
+        'blocks/**/*',
+        'bundles/index/*.{yml,bemdecl.js}'
     ], {
         // usePolling: true // use this option if watch didn't catch your changes
     }, function () {
-        if (isInBuildProcess) { // if something is changed during build process
+        if (isInBuildProcess) { // if something is changed during the build process
             needReRun = true; // we will need to run it again
         } else {
             isInBuildProcess = true; // build process started

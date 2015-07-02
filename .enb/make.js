@@ -12,25 +12,26 @@ var techs = {
 
         // js
         jsBorschikInclude: require('enb-borschik/techs/js-borschik-include'),
-        nodeJsWithSources: require('./techs/node-js-with-sources'),
+        nodeJsWithSources: require('../libs/bnsf/.enb/techs/node-js-with-sources'),
         prependYm: require('enb-modules/techs/prepend-modules'),
 
         // bemtree
-        bemtree: require('./techs/bemtree'),
+        bemtree: require('../libs/bnsf/.enb/techs/bemtree'),
 
         // bemhtml
         bemhtml: require('enb-bemxjst/techs/bemhtml'),
 
         // bnsf stuff
-        pages: require('./techs/pages'),
-        pagesBrowser: require('./techs/pages-browser'),
-        controllers: require('./techs/controllers'),
-        parameters: require('./techs/parameters'),
-        routes: require('./techs/routes'),
-        nodeConfigs: require('./techs/node-configs')
+        pages: require('../libs/bnsf/.enb/techs/pages'),
+        pagesBrowser: require('../libs/bnsf/.enb/techs/pages-browser'),
+        controllers: require('../libs/bnsf/.enb/techs/controllers'),
+        parameters: require('../libs/bnsf/.enb/techs/parameters'),
+        routes: require('../libs/bnsf/.enb/techs/routes'),
+        nodeConfigs: require('../libs/bnsf/.enb/techs/node-configs')
     },
     enbBemTechs = require('enb-bem-techs'),
     levels = [
+        { path: 'libs/bnsf/pre-bem-core.blocks', check: false },
         { path: 'libs/bem-core/common.blocks', check: false },
         { path: 'libs/bem-core/desktop.blocks', check: false },
         { path: 'libs/bem-components/common.blocks', check: false },
@@ -40,13 +41,13 @@ var techs = {
         { path: 'libs/bnsf/dev.blocks', check: false },
         { path: 'libs/bnsf/history-api-fallback.blocks', check: false },
         { path: 'libs/bnsf/ie-dev.blocks', check: false },
-        'desktop.blocks'
+        'blocks'
     ];
 
 module.exports = function(config) {
     var isProd = process.env.YENV === 'production';
 
-    config.nodes('*.bundles/*', function(nodeConfig) {
+    config.nodes('bundles/*', function(nodeConfig) {
         nodeConfig.addTechs([
             // essential
             [enbBemTechs.levels, { levels: levels }],
@@ -59,7 +60,7 @@ module.exports = function(config) {
             [techs.cssAutoprefixer, {
                 sourceTarget: '?.noprefix.css',
                 destTarget: '?.css',
-                browserSupport: ['last 2 versions', 'ie 10', 'opera 12.16']
+                browserSupport: ['last 2 versions', 'ie 10', 'opera 12']
             }],
 
             // bemtree
@@ -91,9 +92,7 @@ module.exports = function(config) {
             [techs.jsBorschikInclude, {target: '?.browser.js', sourceSuffixes: ['vanilla.js', 'js', 'browser.js']}],
             [techs.fileMerge, {
                 target: '?.pre.js',
-                sources: ['?.bemhtml.js', '?.bemtree.js', '?.browser.js', '?.pages.js',
-                    '?.routes.js'
-                ]
+                sources: ['?.bemhtml.js', '?.bemtree.js', '?.browser.js', '?.pages.js', '?.routes.js']
             }],
             [techs.prependYm, { source: '?.pre.js' }],
 
@@ -113,6 +112,6 @@ module.exports = function(config) {
             [techs.borschik, { sourceTarget: '?.css', destTarget: '_?.css', tech: 'cleancss', freeze: true, minify: isProd }]
         ]);
 
-        nodeConfig.addTargets([ '?.bemtree.js', '_?.css', '_?.js', '_?.node.js']);
+        nodeConfig.addTargets(['_?.css', '_?.js', '_?.node.js']);
     });
 };

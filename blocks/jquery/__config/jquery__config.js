@@ -9,7 +9,7 @@ provide(/** @exports */{
     /**
      * URL for loading jQuery if it does not exist
      */
-    url : '//localhost:8080/desktop.bundles/index/jquery.min.js'
+    url : '//localhost:8080/bundles/index/jquery.min.js'
 });
 
 });
