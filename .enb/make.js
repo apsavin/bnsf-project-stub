@@ -98,11 +98,13 @@ module.exports = function(config) {
 
             // node js
             [techs.nodeJsWithSources, {
-                sources: [
+                before: [
+                    '?.config.node.js'
+                ],
+                after:  [
                     '?.bemhtml.js', '?.bemtree.js',
                     '?.pages.node.js', '?.controllers.node.js',
-                    '?.routes.js', '?.routes-private.js',
-                    '?.config.node.js'
+                    '?.routes.js', '?.routes-private.js'
                 ]
             }],
             [techs.prependYm, { source: '?.node.js', target: '_?.node.js' }],
