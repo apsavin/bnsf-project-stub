@@ -20,7 +20,7 @@ var gulp = require('gulp'),
     };
 
 gulp.task('clean', shell.task([
-    'node ./node_modules/.bin/enb clean'
+    'node ./node_modules/.bin/enb make clean'
 ]));
 
 gulp.task('build', function () {
