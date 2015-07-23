@@ -84,7 +84,7 @@ module.exports = function(config) {
             [techs.fileProvider, { target: '?.routing.yml' }],
             [techs.routes, {source: '?.routing.yml'}],
             [techs.fileProvider, { target: '?.api.routing.yml' }],
-            [techs.routes, {source: '?.api.routing.yml', target: '?.routes-private.js', moduleName: 'routes-private'}],
+            [techs.routes, {source: '?.api.routing.yml', target: '?.routes-private.js', moduleName: 'routes-private', public: false}],
             [techs.fileProvider, { target: '?.config.node.yml' }],
             [techs.nodeConfigs, {source: '?.config.node.yml', target: '?.config.node.js'}],
 
