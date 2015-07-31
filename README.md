@@ -14,7 +14,6 @@ There are some examples of blocks in desktop.blocks directory. Feel free to dele
 ## How to start:
 
 ```bash
-$ npm i -g bem-cli
 $ git clone https://github.com/apsavin/bnsf-project-stub.git your-project-name
 $ cd your-project-name
 $ npm i

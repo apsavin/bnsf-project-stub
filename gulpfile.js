@@ -42,6 +42,10 @@ enbServerProcess.stderr.on('data', function (data) {
     process.exit();
 });
 
+enbServerProcess.stdout.on('data', function (data) {
+    console.log('' + data);
+});
+
 process.on('exit', function () {
     enbServerProcess.kill();
 });

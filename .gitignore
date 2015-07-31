@@ -4,10 +4,8 @@ node_modules/
 .idea
 .project
 
-# bem
-.bem/cache/
+.enb/tmp/
 *bundles*/*/*.*
 !*bundles*/*/*.bemdecl.js
 !*bundles*/*/*.min.js
 !*bundles*/*/*.yml
-!*bundles*/.bem/*
