@@ -4,7 +4,7 @@
   "description": "bnsf project stub",
   "bugs": "https://github.com/apsavin/bnsf-project-stub/issues",
   "ignore": [
-    ".bem/cache",
+    ".enb/tmp",
     "node_modules",
     "libs"
   ],

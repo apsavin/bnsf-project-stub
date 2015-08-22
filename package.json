@@ -36,6 +36,6 @@
   "scripts": {
     "postinstall": "bower-npm-install",
     "deps": "bower-npm-install",
-    "start": "node desktop.bundles/index/index.node.js"
+    "start": "node bundles/index/index.node.js"
   }
 }
