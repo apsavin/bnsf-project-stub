@@ -1,4 +1,4 @@
-modules.define('page-4', ['i-page'], function (provide, Page) {
+modules.define('page-dynamic-with-params', ['i-page'], function (provide, Page) {
     "use strict";
 
     provide(Page.decl(this.name, {

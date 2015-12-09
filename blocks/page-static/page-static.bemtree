@@ -1,10 +1,10 @@
-block('page-2')(
+block('page-static')(
     elem('title').content()('another page'),
     content()(function () {
         return [
             {
                 block: 'link',
-                url: path('page-1'),
+                url: path('page-main'),
                 content: 'main page'
             }
         ];

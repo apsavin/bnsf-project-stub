@@ -1,20 +1,20 @@
-block('page-4')(
+block('page-dynamic-with-params')(
     elem('title').content()('dynamic page with get params'),
     content()(function () {
         return [
             {
                 block: 'link',
-                url: path('page-1'),
+                url: path('page-main'),
                 content: 'main page'
             },
             {
                 block: 'link',
-                url: path('page-4', { tech: 'js' }),
+                url: path('page-dynamic-with-params', { tech: 'js' }),
                 content: 'current page with default parameter'
             },
             {
                 block: 'link',
-                url: path('page-4', { tech: 'css' }),
+                url: path('page-dynamic-with-params', { tech: 'css' }),
                 content: 'current page with not-default parameter'
             },
             {

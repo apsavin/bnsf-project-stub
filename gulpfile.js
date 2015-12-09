@@ -3,55 +3,55 @@ var gulp = require('gulp'),
     shell = require('gulp-shell'),
     spawn = require('child_process').spawn,
     watch = require('gulp-watch'),
-    plumber = require('gulp-plumber'),
+    enb = require('enb'),
     isInBuildProcess = false,
     needReRun = false,
-    reRun = function () {
-        needReRun = false;
-        gulp.start('run');
-    },
-    createBuildStream = shell.task([
-        'node ./node_modules/.bin/enb make'
-    ]),
-    isBuildFailed = false,
-    onBuildError = function () {
-        isBuildFailed = true;
-        this.end();
-    };
+    isBuildFailed = false;
 
 gulp.task('clean', shell.task([
-    'node ./node_modules/.bin/enb make clean'
+    'node ./node_modules/.bin/enb make clean && rm -rf ./.enb/tmp'
+]));
+
+gulp.task('test', shell.task([
+    'node ./node_modules/.bin/enb make specs'
 ]));
 
 gulp.task('build', function () {
     isBuildFailed = false;
-    var stream = createBuildStream();
-
-    stream.on('error', onBuildError);
-
-    return plumber().pipe(stream).pipe(plumber());
+    return enb.make().fail(function (err) {
+        console.error(err);
+        isBuildFailed = true;
+    });
 });
 
-var enbServerProcess = spawn('node', [
-    './node_modules/.bin/enb',
-    'server'
-]);
+var enbServerProcess;
 
-enbServerProcess.stderr.on('data', function (data) {
-    console.log('' + data);
-    process.exit();
-});
-
-enbServerProcess.stdout.on('data', function (data) {
-    console.log('' + data);
-});
-
-process.on('exit', function () {
-    enbServerProcess.kill();
+process.on('SIGINT', function () {
+    if (enbServerProcess) {
+        enbServerProcess.kill();
+    }
+    process.exit(0);
 });
 
 var nodemonInstance;
 gulp.task('run', ['build'], function () {
+    if (!enbServerProcess) {
+        enbServerProcess = spawn('node', [
+            './node_modules/.bin/enb',
+            'server',
+            '-p',
+            '8080'
+        ]);
+
+        enbServerProcess.stderr.on('data', function (data) {
+            console.warn('' + data);
+            process.exit();
+        });
+
+        enbServerProcess.stdout.on('data', function (data) {
+            console.log('' + data);
+        });
+    }
     if (!isBuildFailed) {
         if (!nodemonInstance) {
             nodemonInstance = nodemon({
@@ -66,7 +66,10 @@ gulp.task('run', ['build'], function () {
         }
     }
     if (needReRun) { // it seems that something changed during the build process
-        setTimeout(reRun, 0); // lets run it again
+        setTimeout(function () {
+            needReRun = false;
+            gulp.start('run');
+        }, 0); // lets run it again
     } else {
         isInBuildProcess = false; // end of build process
     }

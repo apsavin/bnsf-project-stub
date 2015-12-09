@@ -1,8 +1,8 @@
 - id: some_api_route
-  path: /bundles/index/_index.js
+  path: /bundles/index/freezing/_index.js
   host: localhost:8080
 
 - id: some_api_route_with_params
-  path: /bundles/index/_index.{tech}
+  path: /bundles/index/freezing/_index.{tech}
   host: localhost:8080
   requirements: {tech: js|css}

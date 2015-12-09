@@ -1,6 +1,6 @@
 # Stub to start a new [BEM](http://bem.info) project based on [bnsf](https://github.com/apsavin/bnsf)
 
-Project-stub is a template project repository used for bnsf projects creation.
+Project-stub is a starter-kit-like repository used for bnsf's projects creation.
 
 There are two main BEM libraries are linked here by default:
 
@@ -9,14 +9,13 @@ There are two main BEM libraries are linked here by default:
 
 And, of course, [bnsf](https://github.com/apsavin/bnsf) itself.
 
-There are some examples of blocks in desktop.blocks directory. Feel free to delete it.
+There are some examples of blocks in desktop.blocks directory. Feel free to change or remove it.
 
 ## How to start:
 
 ```bash
-$ git clone https://github.com/apsavin/bnsf-project-stub.git your-project-name
-$ cd your-project-name
-$ npm i
-$ gulp
+git clone https://github.com/apsavin/bnsf-project-stub.git your-project-name
+cd your-project-name
+npm i
+gulp
 ```
-

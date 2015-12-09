@@ -1,17 +1,17 @@
-block('page-3')(
+block('page-dynamic')(
     elem('title').content()('dynamic page'),
     content()(function () {
         return this.get('some_api_route', function (output) {
             return [
                 {
                     block: 'link',
-                    url: path('page-1'),
+                    url: path('page-main'),
                     content: 'main page'
                 },
                 {
                     block: 'code-presenter',
                     tag: 'pre',
-                    content: output.body
+                    content: this.xmlEscape(output.body)
                 }
             ]
         });

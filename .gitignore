@@ -9,3 +9,8 @@ node_modules/
 !*bundles*/*/*.bemdecl.js
 !*bundles*/*/*.min.js
 !*bundles*/*/*.yml
+bundles/index/index.parameters.yml
+bundles/index/frozen
+bundles/index/freezing
+!bundles/index/freezing/.gitkeep
+client.specs

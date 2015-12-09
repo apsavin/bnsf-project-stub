@@ -1,0 +1,10 @@
+{
+  "paths": {
+    "./": "/"
+  },
+  "freeze_paths": {
+    "libs/**/*": "bundles/index/frozen",
+    "*.blocks/**/*": "bundles/index/frozen",
+    "bundles/index/freezing/_index.{js,css}": "bundles/index/frozen"
+  }
+}

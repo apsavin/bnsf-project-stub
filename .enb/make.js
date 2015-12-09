@@ -30,7 +30,7 @@ var techs = {
         nodeConfigs: require('../libs/bnsf/.enb/techs/node-configs')
     },
     enbBemTechs = require('enb-bem-techs'),
-    levels = [
+    libsLevels = [
         { path: 'libs/bnsf/pre-bem-core.blocks', check: false },
         { path: 'libs/bem-core/common.blocks', check: false },
         { path: 'libs/bem-core/desktop.blocks', check: false },
@@ -40,9 +40,12 @@ var techs = {
         { path: 'libs/bnsf/blocks', check: false },
         { path: 'libs/bnsf/dev.blocks', check: false },
         { path: 'libs/bnsf/history-api-fallback.blocks', check: false },
-        { path: 'libs/bnsf/ie-dev.blocks', check: false },
+        { path: 'libs/bnsf/ie-dev.blocks', check: false }
+    ],
+    projectLevels = [
         'blocks'
-    ];
+    ],
+    levels = libsLevels.concat(projectLevels);
 
 module.exports = function(config) {
     var isProd = process.env.YENV === 'production';
@@ -110,10 +113,68 @@ module.exports = function(config) {
             [techs.prependYm, { source: '?.node.js', target: '_?.node.js' }],
 
             // borschik
-            [techs.borschik, { sourceTarget: '?.js', destTarget: '_?.js', freeze: true, minify: isProd }],
-            [techs.borschik, { sourceTarget: '?.css', destTarget: '_?.css', tech: 'cleancss', freeze: true, minify: isProd }]
+            [techs.borschik, { sourceTarget: '?.js', destTarget: 'freezing/_?.js', freeze: isProd, minify: isProd }],
+            [techs.borschik, { sourceTarget: '?.css', destTarget: 'freezing/_?.css', tech: 'cleancss', freeze: isProd, minify: isProd }]
         ]);
 
-        nodeConfig.addTargets(['_?.css', '_?.js', '_?.node.js']);
+        nodeConfig.addTargets(['freezing/_?.css', 'freezing/_?.js', '_?.node.js']);
+    });
+
+    // tests configuration
+
+    config.mode('development', function () {
+        config.includeConfig('enb-bem-specs');
+
+        var tests = config.module('enb-bem-specs').createConfigurator('specs'),
+            testLevels = libsLevels.concat([
+                {path: 'libs/bem-pr/spec.blocks', check: false}
+            ]).concat(projectLevels);
+
+        tests.configure({
+            destPath: 'client.specs',
+            levels: projectLevels,
+            sourceLevels: testLevels,
+            depsTech: 'deps',
+            jsSuffixes: ['vanilla.js', 'js', 'browser.js']
+        });
+
+        techs.fileProvider = require('enb/techs/file-provider');
+        techs.bemjsonToHtml = require('../libs/bnsf/node_modules/enb-bemxjst/techs/html-from-bemjson');
+
+        config.nodes('test.bundles/*', function (nodeConfig) {
+            nodeConfig.addTechs([
+                // essential
+                [enbBemTechs.levels, {levels: testLevels}],
+                [techs.fileProvider, {target: '?.bemjson.js'}],
+                [enbBemTechs.bemjsonToBemdecl],
+                [enbBemTechs.deps],
+                [enbBemTechs.files],
+
+                // css
+                [techs.cssStylus, {
+                    target: '?.css'
+                }],
+
+                // bemhtml
+                [techs.bemhtml, {devMode: process.env.BEMHTML_ENV === 'development'}],
+
+                // html
+                [techs.bemjsonToHtml],
+
+                // js
+                [techs.jsBorschikInclude, {target: '?.browser.js', sourceSuffixes: ['vanilla.js', 'js', 'browser.js']}],
+                [techs.fileMerge, {
+                    target: '?.pre.js',
+                    sources: ['?.browser.js', '?.bemhtml.js']
+                }],
+                [techs.prependYm, { source: '?.pre.js' }],
+
+                // borschik
+                [techs.borschik, {source: '?.js', target: '?.min.js', minify: isProd}],
+                [techs.borschik, {source: '?.css', target: '?.min.css', tech: 'cleancss', minify: isProd}]
+            ]);
+
+            nodeConfig.addTargets(['?.html', '?.min.css', '?.min.js']);
+        });
     });
 };

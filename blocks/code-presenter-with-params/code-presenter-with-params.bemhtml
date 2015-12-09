@@ -1,1 +1,1 @@
-block('code-presenter-with-params').tag()('pre')
+block('code-presenter-with-params').tag()('pre');
