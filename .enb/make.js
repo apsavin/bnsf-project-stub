@@ -7,8 +7,7 @@ var techs = {
         borschik: require('enb-borschik/techs/borschik'),
 
         // css
-        cssStylus: require('enb-stylus/techs/css-stylus'),
-        cssAutoprefixer: require('enb-autoprefixer/techs/css-autoprefixer'),
+        stylus: require('enb-stylus/techs/stylus'),
 
         // js
         jsBorschikInclude: require('enb-borschik/techs/js-borschik-include'),
@@ -59,11 +58,9 @@ module.exports = function(config) {
             [techs.fileProvider, { target: '?.bemdecl.js' }],
 
             // css
-            [techs.cssStylus, { target: '?.noprefix.css' }],
-            [techs.cssAutoprefixer, {
-                sourceTarget: '?.noprefix.css',
-                destTarget: '?.css',
-                browserSupport: ['last 2 versions', 'ie 10', 'opera 12']
+            [techs.stylus, {
+                target: '?.css',
+                autoprefixer: { browsers: ['last 2 versions', 'ie 10', 'opera 12'] }
             }],
 
             // bemtree
@@ -138,7 +135,6 @@ module.exports = function(config) {
             jsSuffixes: ['vanilla.js', 'js', 'browser.js']
         });
 
-        techs.fileProvider = require('enb/techs/file-provider');
         techs.bemjsonToHtml = require('../libs/bnsf/node_modules/enb-bemxjst/techs/html-from-bemjson');
 
         config.nodes('test.bundles/*', function (nodeConfig) {
@@ -151,7 +147,7 @@ module.exports = function(config) {
                 [enbBemTechs.files],
 
                 // css
-                [techs.cssStylus, {
+                [techs.stylus, {
                     target: '?.css'
                 }],
 
