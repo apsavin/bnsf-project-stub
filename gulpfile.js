@@ -9,11 +9,11 @@ var gulp = require('gulp'),
     isBuildFailed = false;
 
 gulp.task('clean', shell.task([
-    'node ./node_modules/.bin/enb make clean && rm -rf ./.enb/tmp'
+    'enb make clean && rm -rf ./.enb/tmp'
 ]));
 
 gulp.task('test', shell.task([
-    'node ./node_modules/.bin/enb make specs'
+    'enb make specs'
 ]));
 
 gulp.task('build', function () {
